@@ -1,0 +1,60 @@
+Data Definition Language
+CREATE: Creates new objects in the database like tables, indexes, etc.
+CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY,
+     FirstName VARCHAR(100),
+     LastName VARCHAR(100),
+     Department VARCHAR(100)
+ );
+
+ALTER: Modifies existing database objects.
+ ALTER TABLE Employees
+ ADD BirthDate DATE;
+
+DROP: Deletes database objects.
+ DROP TABLE Employees;
+
+ TRUNCATE: Removes all rows from a table but keeps the table structure intact.
+ TRUNCATE TABLE Employees;
+
+ RENAME: Changes the name of a database object.
+ RENAME TABLE Employees TO Staff;
+
+ COMMENT: To add comments to the data dictionary for objects.
+ COMMENT ON TABLE Employees IS 'Contains employee data'
+
+ Data Query Language
+ SELECT: Retrieves data from the database.
+ WHERE Department = 'HR';
+
+ Data Manipulation Language
+ INSERT: Adds new rows of data to a table.
+ INSERT INTO Employees (EmpID, FirstName, LastName, Department)
+ VALUES (101, 'John', 'Doe', 'HR');
+
+ UPDATE: Modifies existing data in a table.
+ UPDATE Employees
+ SET Department = 'Finance'
+ WHERE EmpID = 101;
+
+ DELETE: Removes rows from a table.
+ DELETE FROM Employees
+ WHERE EmpID = 101;
+
+ MERGE: Merges data from two tables based on a condition.
+ MERGE INTO Employees e
+ USING NewEmployees ne
+ ON (e.EmpID = ne.EmpID)
+ WHEN MATCHED THEN
+     UPDATE SET e.Name = ne.Name
+ WHEN NOT MATCHED THEN
+     INSERT (EmpID, Name)
+     VALUES (ne.EmpID, ne.Name);
+
+ Data Control Language
+
+ GRANT: Provides privileges to users.
+ GRANT SELECT, INSERT ON Employees TO User1;
+
+ REVOKE: Removes privileges from users.
+ REVOKE SELECT, INSERT ON Employees FROM User1;
